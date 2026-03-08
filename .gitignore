@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.enc
+token.json
+credentials.json
+.env
+.env.*
+coverage/
+*.js.map
+*.d.ts.map

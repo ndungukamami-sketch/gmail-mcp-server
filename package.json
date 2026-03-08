@@ -1,0 +1,31 @@
+{
+  "name": "gmail-mcp-server",
+  "version": "2.0.0",
+  "description": "A secure Gmail MCP server with OAuth 2.0, encrypted token storage, and full Gmail API integration.",
+  "type": "module",
+  "bin": {
+    "gmail-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "googleapis": "^144.0.0",
+    "sanitize-html": "^2.13.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/sanitize-html": "^2.13.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
