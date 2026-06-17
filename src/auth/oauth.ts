@@ -86,8 +86,9 @@ export async function getAuthenticatedClient(): Promise<OAuth2Client> {
   // Refresh if within 60 seconds of expiry
   const expiry = tokens.expiry_date ?? 0;
   const needsRefresh = Date.now() >= expiry - 60_000;
-
-  if (needsRefresh && tokens.refresh_token) {
+  if (needsRefresh && !tokens.refresh_token) {
+    logger.warn({ msg: "Token expired but no refresh_token - re-auth required" });
+  } else if (needsRefresh && tokens.refresh_token) {
     // Mutex: only one refresh at a time; concurrent callers await the same promise
     if (!_refreshPromise) {
       _refreshPromise = (async () => {

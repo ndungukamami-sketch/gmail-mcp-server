@@ -25,7 +25,7 @@ export interface PingResult {
 export async function handlePing(client: GmailClient): Promise<PingResult> {
   const [profile, tokens] = await Promise.all([
     client.getProfile(),
-    Promise.resolve(readTokens(TOKEN_PATH)),
+    Promise.resolve().then(() => readTokens(TOKEN_PATH)),
   ]);
 
   const expiryDate = (tokens as { expiry_date?: number } | null)?.expiry_date;
